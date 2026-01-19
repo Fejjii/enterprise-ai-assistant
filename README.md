@@ -14,3 +14,20 @@ Example questions
 • Which product should be prioritized?
 
 This is interview-grade documentation.
+
+API Usage
+
+Endpoint:
+POST /analyze
+
+Example request:
+
+{
+  "question": "Which region is underperforming?"
+}
+
+
+Example response:
+
+{
+  "insight": "Asia shows lower total revenue compared to other regions..."

@@ -4,16 +4,15 @@ from openai import OpenAI
 from dotenv import load_dotenv
 import os
 
-# Load env
 load_dotenv()
 
-# Client
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-# Load data
 BASE_DIR = Path(__file__).resolve().parent.parent
 DATA_PATH = BASE_DIR / "data" / "sales_data.csv"
-df = pd.read_csv(DATA_PATH)
+
+def load_data():
+    return pd.read_csv(DATA_PATH)
 
 def summarize_data(df: pd.DataFrame) -> str:
     summary = []
@@ -38,7 +37,7 @@ Here is the data summary:
 Business question:
 {question}
 
-Provide a concise insight.
+Provide a concise, data-driven business insight.
 """
     response = client.chat.completions.create(
         model="gpt-4o-mini",
@@ -46,15 +45,3 @@ Provide a concise insight.
         temperature=0.2,
     )
     return response.choices[0].message.content
-
-
-data_summary = summarize_data(df)
-question = "Which region is performing best and why?"
-
-print("\nDATA SUMMARY SENT TO AI:")
-print(data_summary)
-
-insight = ask_ai(data_summary, question)
-
-print("\nAI BUSINESS INSIGHT:")
-print(insight)
