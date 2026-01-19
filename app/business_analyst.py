@@ -1,5 +1,7 @@
 import pandas as pd
 from pathlib import Path
+from app.config import DATA_PATH, OPENAI_MODEL
+from app.logger import logger
 from openai import OpenAI
 from dotenv import load_dotenv
 import os
@@ -12,7 +14,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 DATA_PATH = BASE_DIR / "data" / "sales_data.csv"
 
 def load_data():
-    return pd.read_csv(DATA_PATH)
+    logger.info("Loading sales data")
+    df = pd.read_csv(DATA_PATH)
+    logger.info(f"Sales data loaded successfully ({len(df)} rows)")
+    return df
 
 def summarize_data(df: pd.DataFrame) -> str:
     summary = []
@@ -27,8 +32,8 @@ def summarize_data(df: pd.DataFrame) -> str:
 
     return "\n".join(summary)
 
-def ask_ai(summary: str, question: str) -> str:
-    prompt = f"""
+def build_prompt(summary: str, question: str) -> str:
+    return f"""
 You are a senior business analyst.
 
 Here is the data summary:
@@ -39,9 +44,19 @@ Business question:
 
 Provide a concise, data-driven business insight.
 """
+
+
+def ask_ai(summary: str, question: str) -> str:
+    logger.info("Calling OpenAI model for analysis")
+
+    prompt = build_prompt(summary, question)
+
     response = client.chat.completions.create(
-        model="gpt-4o-mini",
+        model=OPENAI_MODEL,
         messages=[{"role": "user", "content": prompt}],
         temperature=0.2,
     )
+
+    logger.info("Received response from OpenAI")
+
     return response.choices[0].message.content
