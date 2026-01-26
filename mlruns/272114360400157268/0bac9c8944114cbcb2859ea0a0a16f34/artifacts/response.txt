@@ -1,0 +1,17 @@
+The total revenue across the regions is as follows:
+
+- Asia: $26,000
+- Europe: $36,000
+- US: $54,000
+
+Total revenue across all regions is $116,000. 
+
+To assess the distribution, we can calculate the percentage of total revenue contributed by each region:
+
+- Asia: \( \frac{26,000}{116,000} \times 100 \approx 22.41\% \)
+- Europe: \( \frac{36,000}{116,000} \times 100 \approx 31.03\% \)
+- US: \( \frac{54,000}{116,000} \times 100 \approx 46.55\% \)
+
+The US region contributes nearly half of the total revenue, while Asia contributes only about 22%. This indicates a significant imbalance in revenue distribution, with the US being the dominant region. 
+
+**Insight:** Revenue is not evenly distributed across regions; the US accounts for a disproportionate share of total revenue, suggesting potential opportunities for growth in Asia and Europe.

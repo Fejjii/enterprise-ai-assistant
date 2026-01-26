@@ -1,0 +1,14 @@
+To determine which product contributes most to total revenue, we need to analyze the revenue distribution across the two products (A and B) within the three regions (Asia, Europe, and US). 
+
+Given the total revenue by region:
+- Asia: $26,000
+- Europe: $36,000
+- US: $54,000
+
+The total revenue across all regions is $26,000 + $36,000 + $54,000 = $116,000.
+
+To identify the product contribution, we would typically need the revenue breakdown by product for each region. However, since this data is not provided, we can infer that the product with the highest overall revenue in the regions likely contributes most to total revenue.
+
+Assuming that product A and product B are sold in all regions, we can hypothesize that the product with a higher market presence or demand in the US (which has the highest revenue) may be the leading contributor. 
+
+**Insight:** Without specific product revenue data, we cannot definitively conclude which product contributes most to total revenue. However, it is advisable to analyze the product sales data by region to identify the leading product. If product A is more prevalent in the US, it may be the primary contributor to total revenue. Further analysis is recommended to confirm this hypothesis.
