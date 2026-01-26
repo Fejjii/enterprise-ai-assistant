@@ -6,86 +6,42 @@
 
 ## Overview
 
-The **AI Business Analyst Assistant** is a production-ready AI system that answers business questions from structured data using a Large Language Model (LLM).
+The **AI Business Analyst Assistant** is a production-ready AI application that answers business questions from structured data using a Large Language Model (LLM).
 
-Unlike typical AI demos or notebooks, this project focuses on **how AI systems are built, deployed, observed, and operated in real production environments**.
+Unlike typical AI demos or notebooks, this project is built to demonstrate **how real AI systems are engineered, deployed, observed, and operated in production**.
 
-The goal is not just to generate answers, but to make AI **traceable, debuggable, auditable, and reliable**.
+The focus is not only on generating answers, but on making AI systems:
+
+- Traceable
+- Debuggable
+- Observable
+- Auditable
+- Cloud-ready
+
+This project is designed as a **flagship AI engineering reference**, not a proof of concept.
 
 ---
 
-## What the System Does
+## What the Project Does
 
-The system exposes a REST API that:
+The application exposes a REST API that performs the following steps for every request:
 
 1. Loads structured business data (sales dataset)
 2. Computes a deterministic analytical summary
-3. Builds a controlled prompt from that summary
-4. Queries an LLM to generate a business insight
-5. Returns the answer via an API
-6. Tracks the entire AI decision lifecycle
+3. Builds a controlled, versioned prompt
+4. Sends the prompt to an LLM
+5. Returns a business insight
+6. Tracks the entire request lifecycle (logs + MLflow)
 
-### Example
+Each request is treated as a **first-class production event**.
 
-**Request**
+---
+
+## Example API Call
+
+### Request
+
 ```json
 {
   "question": "Which region is underperforming?"
 }
-
-## Example Response
-
-```json
-{
-  "request_id": "e8b4c5f2-6a4b-4d6c-9b89-8d2b8f3a7c21",
-  "insight": "Asia shows lower total revenue compared to other regions..."
-}
-
-## Architecture Overview
-
-Client (Swagger / API Consumer)
-        |
-        v
-FastAPI Application
-        |
-        v
-Business Logic Layer
-  - Data loading
-  - Data aggregation
-  - Summary generation
-  - Prompt construction
-        |
-        v
-LLM (OpenAI API)
-        |
-        v
-Observability Layer
-  - Structured logs (request_id)
-  - MLflow tracking
-  - Latency metrics
-  - Output artifacts
-
-## Project Structure
-
-enterprise_ai_assistant/
-│
-├── app/
-│   ├── api.py                # FastAPI routes
-│   ├── business_analyst.py   # Core data + AI logic
-│   ├── mlflow_config.py      # MLflow initialization
-│   ├── config.py             # Application configuration
-│   └── logger.py             # Structured logging setup
-│
-├── data/
-│   └── sales_data.csv
-│
-├── tests/
-│   └── test_health.py        # API health test
-│
-├── .github/workflows/
-│   └── ci.yml                # CI pipeline
-│
-├── Dockerfile
-├── requirements.txt
-├── pytest.ini
-└── README.md
